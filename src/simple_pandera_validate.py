@@ -27,12 +27,9 @@ data_sample = test_data.sample(n=10)
 
 Company = ['GOOG-Google', 'AAPL-Apple', 'TSLA-Tesla', 'NVDA-Nvidia', 'AMZN-Amazon', 'INTC-Intel', 'MSFT-Microsoft', 'ADI-Analog Devices', ]
 Deals = ['Deals-1', 'Deals-2', 'Deals-3', 'Deals-4', 'Deals-5']
+
 # Defining the schema
 schema = pa.DataFrameSchema({
-
-    # "Id" : pa.Column(pa.Int, nullable=False),
-    # "Date" : pa.Column(pa.DateTime),
-     
 
     "DealName" : pa.Column(pa.String, checks=pa.Check.isin(
                 [deal for deal in list(Deals)]), required=True, nullable=False),
@@ -66,24 +63,30 @@ schema = pa.DataFrameSchema({
 example_input = schema.example(size=10)
 ic(example_input)
 
-
-
 # Transformed schema
-transformed_schema = schema.add_columns({
-    "RowNo" : pa.Column(pa.String),
+# transformed_schema = schema.add_columns({
+#     "RowNo" : pa.Column(pa.String),
+#     "AsOfDate" : pa.Column(pa.DateTime),
+#     "ProcessIdentifier" : pa.Column(pa.String, nullable=False),
+#     "RowHash" : pa.Column(pa.Int,   )
+# })
+# But this only appends to end of existing schema
+
+
+new_schema = pa.DataFrameSchema({
+    "RowNo" : pa.Column(pa.INT16, allow_duplicates=False),
+    **schema.columns,
     "AsOfDate" : pa.Column(pa.DateTime),
-    "ProcessIdentifier" : pa.Column(pa.String, nullable=False),
-    "RowHash" : pa.Column(pa.Int,   )
+    "ProcessIdentifier" : pa.Column(pa.INT32, allow_duplicates=False, nullable=False),
+    "RowHash" : pa.Column(pa.INT64, allow_duplicates=False)
 })
-
-
 
 # Validating the data
 df_input = schema.validate(data_sample)
 ic(df_input)
 
 # Validating the transformed_data
-df_output = transformed_schema.example(size=10)
+df_output = new_schema.example(size=10) # transformed_schema
 ic(df_output)
  
 
