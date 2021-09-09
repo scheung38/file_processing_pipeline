@@ -5,19 +5,19 @@ from icecream import ic
 from iso4217 import Currency
 import pycountry
 
-ic(Currency.usd.country_names)
-ic(Currency.usd.currency_name)
+# ic(Currency.usd.country_names)
+# ic(Currency.usd.currency_name)
 
-ic(Currency.gbp.country_names)
-ic(Currency.gbp.currency_name)
-ic(Currency.gbp.code)
-ic(pycountry.countries)
+# ic(Currency.gbp.country_names)
+# ic(Currency.gbp.currency_name)
+# ic(Currency.gbp.code)
+# ic(pycountry.countries)
 
  
-def read_file(file):
+def read_and_validate_csv_file(file):
 
     try:
-        test_data = pd.read_csv('src/'+file)
+        test_data = pd.read_csv('data_in/'+file)
 
         ic(test_data)
 
@@ -77,13 +77,13 @@ def read_file(file):
         df_output = new_schema.example(size=10) # transformed_schema
         ic(df_output)
         
-        df_output.to_csv('out_csv', sep=',', index=False)
+        return df_output.to_csv('data_out/out_csv', sep=',', index=False)
     except Exception as e:
-        with open('log.txt', 'a') as f:
+        with open('error_log/error.txt', 'a') as f:
             ic(e)
             f.write(str(e)+'\n')
 
 if __name__ == '__main__':
-    read_file('WRONGtrain.csv')
+    read_and_validate_csv_file('train.csv')
  
 
