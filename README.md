@@ -68,11 +68,15 @@ pytest -v
 
 
 ## ToDo
-### Generate Parquet file from CSV
+- CSV to CSV with extra columns, parquet - DONE
+
 ### Excel
+
+- Excel to CSV with extra columns, parquet - DONE
 
 
 https://pypi.org/project/iso4217/
 https://pypi.org/project/pycountry/
 
 https://github.com/apache/arrow/issues/1920
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_parquet.html

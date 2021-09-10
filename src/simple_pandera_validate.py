@@ -4,6 +4,7 @@ import pandera as pa
 from icecream import ic
 from iso4217 import Currency
 import pycountry
+from pathlib import Path
 
 # ic(Currency.usd.country_names)
 # ic(Currency.usd.currency_name)
@@ -14,10 +15,22 @@ import pycountry
 # ic(pycountry.countries)
 
  
-def read_and_validate_csv_file(file):
+def read_and_validate_file(file):
 
     try:
-        test_data = pd.read_csv('data_in/'+file)
+
+        if Path(file).suffix == ".csv": 
+
+            test_data = pd.read_csv('data_in/'+file)
+            ic('Found csv file!')
+
+        elif Path(file).suffix == ".xlsx":
+
+            test_data = pd.read_excel('data_in/'+file, skiprows=1)
+            ic('Found Excel file!')
+
+        else:
+            ic('Cannot determine file extension, please check')
 
         ic(test_data)
 
@@ -77,10 +90,10 @@ def read_and_validate_csv_file(file):
         df_output = new_schema.example(size=10) # transformed_schema
         ic(df_output)
         
-        df_output.to_csv('data_out/out_csv', sep=',', index=False)
+        df_output.to_csv('data_out/out.csv', sep=',', index=False)
         df_output.to_parquet('data_out/df_output.parquet.gzip', compression='gzip', use_deprecated_int96_timestamps=True)
 
-        return 'File created in data_out/out_csv'
+        return 'File created in data_out/out.csv'
 
     except Exception as e:
         with open('error_log/error.txt', 'a') as f:
@@ -89,6 +102,7 @@ def read_and_validate_csv_file(file):
             return str(e)
 
 if __name__ == '__main__':
-    read_and_validate_csv_file('train.csv')
+    # read_and_validate_file('train.csv')
  
+    read_and_validate_file('train.xlsx')
 
