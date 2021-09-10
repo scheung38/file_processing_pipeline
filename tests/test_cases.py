@@ -2,7 +2,7 @@ import pytest
 from pathlib import Path
 from icecream import ic
 
-from src.simple_pandera_validate import read_and_validate_file
+from src.main import read_and_validate_file
 
  
 def test_can_process():

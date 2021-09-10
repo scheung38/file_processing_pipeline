@@ -1,11 +1,13 @@
-from enum import unique
 import pandas as pd
 import pandera as pa
 from icecream import ic
-from iso4217 import Currency
 import pycountry
 from pathlib import Path
- 
+from fastapi import FastAPI
+
+app = FastAPI()
+
+# @app.get("/")
 def read_and_validate_file(file):
 
     try:
@@ -83,6 +85,11 @@ def read_and_validate_file(file):
         
         df_output.to_csv('data_out/out.csv', sep=',', index=False)
         df_output.to_parquet('data_out/df_output.parquet.gzip', compression='gzip', use_deprecated_int96_timestamps=True)
+        # check parquet file
+        parq = pd.read_parquet('data_out/df_output.parquet.gzip')
+
+        ic(parq)
+
 
         return 'File created in data_out/out.csv'
 
@@ -94,5 +101,5 @@ def read_and_validate_file(file):
 
 if __name__ == '__main__':
     read_and_validate_file('train.csv')
-    read_and_validate_file('train.xlsx')
+    # read_and_validate_file('train.xlsx')
 

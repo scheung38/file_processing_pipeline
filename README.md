@@ -90,7 +90,7 @@ for example
 ## ToDo
 - Would like to containerize it
 - Use Kafka and connect to Debezium to pick up delta changes only
- 
+- Connect to API backend service with FastAPI 
 
 ### Excel
  
