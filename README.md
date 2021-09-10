@@ -66,6 +66,26 @@ The process should do the following validations
 
 pytest -v
 
+tests/test_cases.py::test_can_process PASSED
+tests/test_cases.py::test_no_csv_file_found PASSED
+tests/test_cases.py::test_can_process_excel PASSED 
+
+## Output Logs
+
+These are located in error_logs/error.txt 
+
+for example
+
+- [Errno 2] No such file or directory: 'data_in/XXXtrain.csv'
+
+- failure cases:
+   index    failure_case
+0      0  Fiji XXXDollar
+
+- Casting from timestamp[ns] to timestamp[us] would lose data: 26172
+
+
+
 
 ## ToDo
 - CSV to CSV with extra columns, parquet - DONE
