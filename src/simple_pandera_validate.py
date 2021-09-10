@@ -21,7 +21,7 @@ def read_and_validate_csv_file(file):
 
         ic(test_data)
 
-        data_sample = test_data.sample(n=10)
+        data_sample = test_data.sample(n=4)
 
         Company = ['GOOG-Google', 'AAPL-Apple', 'TSLA-Tesla', 'NVDA-Nvidia', 'AMZN-Amazon', 'INTC-Intel', 'MSFT-Microsoft', 'ADI-Analog Devices', ]
         Deals = ['Deals-1', 'Deals-2', 'Deals-3', 'Deals-4', 'Deals-5']
@@ -77,13 +77,16 @@ def read_and_validate_csv_file(file):
         df_output = new_schema.example(size=10) # transformed_schema
         ic(df_output)
         
-        return df_output.to_csv('data_out/out_csv', sep=',', index=False)
+        df_output.to_csv('data_out/out_csv', sep=',', index=False)
+        return 'File created in data_out/out_csv'
+
     except Exception as e:
         with open('error_log/error.txt', 'a') as f:
             ic(e)
             f.write(str(e)+'\n')
+            return str(e)
 
 if __name__ == '__main__':
-    read_and_validate_csv_file('train.csv')
+    read_and_validate_csv_file('YYYtrain.csv')
  
 
