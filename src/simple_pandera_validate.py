@@ -102,7 +102,6 @@ def read_and_validate_file(file):
             return str(e)
 
 if __name__ == '__main__':
-    # read_and_validate_file('train.csv')
- 
+    read_and_validate_file('train.csv')
     read_and_validate_file('train.xlsx')
 
