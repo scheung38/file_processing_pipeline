@@ -5,15 +5,6 @@ from icecream import ic
 from iso4217 import Currency
 import pycountry
 from pathlib import Path
-
-# ic(Currency.usd.country_names)
-# ic(Currency.usd.currency_name)
-
-# ic(Currency.gbp.country_names)
-# ic(Currency.gbp.currency_name)
-# ic(Currency.gbp.code)
-# ic(pycountry.countries)
-
  
 def read_and_validate_file(file):
 
