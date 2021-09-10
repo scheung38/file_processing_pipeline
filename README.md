@@ -88,13 +88,12 @@ for example
 
 
 ## ToDo
-- CSV to CSV with extra columns, parquet - DONE
+- Would like to containerize it
+- Use Kafka and connect to Debezium to pick up delta changes only
+ 
 
 ### Excel
-
-- Excel to CSV with extra columns, parquet - DONE
-
-
+ 
 https://pypi.org/project/iso4217/
 https://pypi.org/project/pycountry/
 
