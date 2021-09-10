@@ -62,7 +62,17 @@ The process should do the following validations
 
 
 
+## Test
+
+pytest -v
+
+
+## ToDo
+### Generate Parquet file from CSV
+### Excel
+
+
 https://pypi.org/project/iso4217/
 https://pypi.org/project/pycountry/
 
-Test
+https://github.com/apache/arrow/issues/1920

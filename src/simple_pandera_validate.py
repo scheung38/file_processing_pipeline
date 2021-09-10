@@ -78,6 +78,8 @@ def read_and_validate_csv_file(file):
         ic(df_output)
         
         df_output.to_csv('data_out/out_csv', sep=',', index=False)
+        df_output.to_parquet('data_out/df_output.parquet.gzip', compression='gzip', use_deprecated_int96_timestamps=True)
+
         return 'File created in data_out/out_csv'
 
     except Exception as e:
@@ -87,6 +89,6 @@ def read_and_validate_csv_file(file):
             return str(e)
 
 if __name__ == '__main__':
-    read_and_validate_csv_file('YYYtrain.csv')
+    read_and_validate_csv_file('train.csv')
  
 
